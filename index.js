@@ -54,18 +54,18 @@ $(document).ready(function(){
     $("#7-day-avg").html(rate_7_day_avg.toFixed(2));
     
     var ctx = $('#growth-trends');
-    var labels = rate.map(function(x) { return x['date']}).slice(last - 20, last+1);
-    var graph_rate_data = rate.map(function(x) { return x['rate']}).slice(last - 20, last+1);
+    var labels = rate.map(function(x) { return x['date']}).slice(last - 21, last+1);
+    var graph_rate_data = rate.map(function(x) { return x['rate']}).slice(last - 21, last+1);
     
     
     var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: labels,
-      backgroundColor: "#3e95cd",
       datasets: [{
           label: "% growth",
-          data: graph_rate_data
+          data: graph_rate_data,
+          backgroundColor: "#3e95cd"
       }]
     },
     options: {
