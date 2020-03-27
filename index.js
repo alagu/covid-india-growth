@@ -1,4 +1,14 @@
 $(document).ready(function(){
+  var addCommas = function(x) {
+    x=x.toString();
+    var lastThree = x.substring(x.length-3);
+    var otherNumbers = x.substring(0,x.length-3);
+    if(otherNumbers != '')
+        lastThree = ',' + lastThree;
+    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+    return res;
+  }
+  
   let rate = []
   let total = 0;
   $.get("https://api.covid19india.org/data.json", function(response){
@@ -39,8 +49,11 @@ $(document).ready(function(){
     $("#today-new").html(rate[last]['current']-rate[last]['past'])
     $(".yesterday-growth").html(rate[last-1]['rate'])
     $("#yesterday-cases").html(rate[last-1]['current'])
+    debugger
     var yesterday_rate_prediction = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate[last-1]['rate']))/100,7))
-    $("#yesterday-rate-prediction").html(yesterday_rate_prediction)
+    var yesterday_rate_prediction_30d = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate[last-1]['rate']))/100,30))
+    $("#yesterday-rate-prediction").html(addCommas(yesterday_rate_prediction))
+    $("#yesterday-rate-prediction-30d").html(addCommas(yesterday_rate_prediction_30d))
     
     var rate_7_day_sum = 0.0;
     for (var i = rate.length - 2; i >= rate.length - 8; i--) {
@@ -50,7 +63,10 @@ $(document).ready(function(){
     let rate_7_day_avg = (rate_7_day_sum/7)
     var seven_day_prediction = rate[last]['current']*(Math.pow(rate_7_day_avg,7))
     var seven_day_prediction = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate_7_day_avg))/100,7))
-    $("#7-day-prediction").html(seven_day_prediction)
+    var seven_day_prediction_30d = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate_7_day_avg))/100,30))
+    
+    $("#7-day-prediction").html(addCommas(seven_day_prediction))
+    $("#7-day-prediction-30d").html(addCommas(seven_day_prediction_30d))
     
     $(".7-day-avg").html(rate_7_day_avg.toFixed(2));
     
