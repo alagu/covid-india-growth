@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
     <title>Covid19 India Growth Rate</title>
+    <style>
+    .today-delta {
+      color: rgb(255, 7, 58);
+    }
+    </style>
   </head>
   <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -28,9 +33,10 @@
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">
-              <span id="yesterday-growth">-</span> <small class="text-muted">%</small></h1>
+              <span class="yesterday-growth">-</span> <small class="text-muted">%</small></h1>
               <ul class="list-unstyled mt-3 mb-4">
                 <li><span id="yesterday-cases">-</span> confirmed</li>
+                <li><span id="yesterday-rate-prediction">-</span> cases in next 7 days @ <span class="yesterday-growth">-</span>%</li>
               </ul>
           </div>
         </div>
@@ -44,6 +50,7 @@
               <small class="text-muted">%</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li><span id="today-cases">-</span> confirmed</li>
+              <li class="today-delta"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg><span id="today-new">-</span> new</li>
             </ul>
           </div>
         </div>
@@ -53,9 +60,11 @@
           </div>
           <div class="card-body">
             <h1 class="card-title pricing-card-title">
-              <span id="7-day-avg">-</span> 
+              <span class="7-day-avg">-</span> 
             <small class="text-muted">%</small></h1>
-            
+            <ul class="list-unstyled mt-3 mb-4">
+              <li><span id="7-day-prediction">-</span> cases in next 7 days @ <span class="7-day-avg">-</span>%</li>
+            </ul>
           </div>
         </div>
       </div>
