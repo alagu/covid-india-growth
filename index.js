@@ -1,14 +1,4 @@
 $(document).ready(function(){
-  var addCommas = function(x) {
-    x=x.toString();
-    var lastThree = x.substring(x.length-3);
-    var otherNumbers = x.substring(0,x.length-3);
-    if(otherNumbers != '')
-        lastThree = ',' + lastThree;
-    var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-    return res;
-  }
-
   let rate = []
   let total = 0;
   var monthNames = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November","December"];
@@ -62,8 +52,8 @@ $(document).ready(function(){
     // debugger
     var yesterday_rate_prediction = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate[last-1]['rate']))/100,7))
     var yesterday_rate_prediction_30d = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate[last-1]['rate']))/100,30))
-    $("#yesterday-rate-prediction").html(addCommas(yesterday_rate_prediction))
-    $("#yesterday-rate-prediction-30d").html(addCommas(yesterday_rate_prediction_30d))
+    $("#yesterday-rate-prediction").html(numeral(yesterday_rate_prediction).format('0.0a'))
+    $("#yesterday-rate-prediction-30d").html(numeral(yesterday_rate_prediction_30d).format('0.0a'))
 
     var rate_7_day_sum = 0.0;
     for (var i = rate.length - 2; i >= rate.length - 8; i--) {
@@ -75,8 +65,8 @@ $(document).ready(function(){
     var seven_day_prediction = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate_7_day_avg))/100,7))
     var seven_day_prediction_30d = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate_7_day_avg))/100,30))
 
-    $("#7-day-prediction").html(addCommas(seven_day_prediction))
-    $("#7-day-prediction-30d").html(addCommas(seven_day_prediction_30d))
+    $("#7-day-prediction").html(numeral(seven_day_prediction).format('0.0a'));
+    $("#7-day-prediction-30d").html(numeral(seven_day_prediction_30d).format('0.0a'))
 
     $(".7-day-avg").html(rate_7_day_avg.toFixed(2));
 
