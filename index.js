@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 
     let history = response.cases_time_series;
-    history.push({dailyconfirmed: response.key_values[0]['confirmeddelta'], date: todaysDate})
+    history.push({dailyconfirmed: response.statewise[0]['deltaconfirmed'], date: todaysDate})
 
     history.forEach(function(data, index) {
       if (index == 0) {
