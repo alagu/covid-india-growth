@@ -72,8 +72,8 @@ $(document).ready(function(){
 
 
     var ctx = $('#growth-trends');
-    var labels = rate.map(function(x) { return x['date']}).slice(last - 21, last+1);
-    var graph_rate_data = rate.map(function(x) { return x['rate']}).slice(last - 21, last+1);
+    var labels = rate.map(function(x) { return x['date']}).slice(last - 45, last+1);
+    var graph_rate_data = rate.map(function(x) { return x['rate']}).slice(last - 45, last+1);
 
 
     var myChart = new Chart(ctx, {
