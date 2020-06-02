@@ -45,10 +45,10 @@ $(document).ready(function(){
 
 
     $("#today-growth").html(rate[last]['rate'])
-    $("#today-cases").html(rate[last]['current'])
+    $("#today-cases").html(numeral(rate[last]['current']).format('0.0a'))
     $("#today-new").html(rate[last]['current']-rate[last]['past'])
     $(".yesterday-growth").html(rate[last-1]['rate'])
-    $("#yesterday-cases").html(rate[last-1]['current'])
+    $("#yesterday-cases").html(numeral(rate[last-1]['current']).format('0.0a'))
     // debugger
     var yesterday_rate_prediction = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate[last-1]['rate']))/100,7))
     var yesterday_rate_prediction_30d = Math.round(rate[last]['current']*Math.pow((100+parseFloat(rate[last-1]['rate']))/100,30))
@@ -72,8 +72,8 @@ $(document).ready(function(){
 
 
     var ctx = $('#growth-trends');
-    var labels = rate.map(function(x) { return x['date']}).slice(last - 45, last+1);
-    var graph_rate_data = rate.map(function(x) { return x['rate']}).slice(last - 45, last+1);
+    var labels = rate.map(function(x) { return x['date']}).slice(last - 89, last+1);
+    var graph_rate_data = rate.map(function(x) { return x['rate']}).slice(last - 89, last+1);
 
 
     var myChart = new Chart(ctx, {
